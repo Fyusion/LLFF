@@ -125,6 +125,8 @@ RUN apt-get update && apt-get install -y libopencv-dev python-opencv && \
 # Install GLFW
 RUN apt-get update && apt-get install -y libglfw3-dev
 
+RUN apt-get install -y imagemagick
+
 # Expose Ports for Tensorboard (6006)
 EXPOSE 6006
 
