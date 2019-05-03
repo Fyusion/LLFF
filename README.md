@@ -22,6 +22,20 @@ with Prescriptive Sampling Guidelines](https://fyusion.com/llff)
 
 <img src='imgs/teaser.jpg'/>
 
+## Table of Contents
+
+  * [Installation TL;DR: Setup and render a demo scene](#installation-tldr-setup-and-render-a-demo-scene)
+  * [Full Installation Details](#full-installation-details)
+    * [Manual installation](#manual-installation)
+    * [Docker installation](#docker-installation)
+  * [Using your own input images for view synthesis](#using-your-own-input-images-for-view-synthesis)
+    * [Quickstart: rendering a video from a zip file of your images](#quickstart-rendering-a-video-from-a-zip-file-of-your-images)
+  * [General step-by-step usage](#general-step-by-step-usage)
+    * [1. Recover camera poses](#1-recover-camera-poses)
+    * [2. Generate MPIs](#2-generate-mpis)
+    * [3. Render novel views](#3-render-novel-views)
+  * [Citation](#citation)
+
 ## Installation TL;DR: Setup and render a demo scene
 
 First install `docker` ([instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/)) and `nvidia-docker` ([instructions](https://github.com/NVIDIA/nvidia-docker)).
@@ -133,7 +147,7 @@ python imgs2mpis.py scenedir scenedir/mpis --height 360
 
 You can either generate a list of novel view camera poses and render out a video, or you can load the saved MPIs in our interactive OpenGL viewer.
 
-#### Save rendered video
+#### Generate poses for new view path
 First, generate a smooth new view path by calling
 ```
 python imgs2renderpath.py <your_scenedir> <your_posefile> \
