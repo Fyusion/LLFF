@@ -51,6 +51,11 @@ A video like this should be output to `data/testscene/outputs/test_vid.mp4`:
 </br>
 <img src='imgs/fern.gif'/>
 
+If this works, then you are ready to start processing your own images! Run
+```
+sudo nvidia-docker run -it --rm --volume /:/host --workdir /host$PWD tf_colmap
+```
+to enter a shell inside the Docker container, and [skip ahead](#using-your-own-input-images-for-view-synthesis) to the section on using your own input images for view synthesis.
 
 ## Full Installation Details
 
