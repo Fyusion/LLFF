@@ -1,0 +1,8 @@
+jupyterlab = "*"
+tensorflow-gpu = "*"
+imageio = "*"
+matplotlib = "*"
+scipy = "*"
+numpy = "*"
+skimage = "*"
+imageio == 2.4.0
