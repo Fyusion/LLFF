@@ -34,6 +34,7 @@ with Prescriptive Sampling Guidelines](https://fyusion.com/llff)
     * [1. Recover camera poses](#1-recover-camera-poses)
     * [2. Generate MPIs](#2-generate-mpis)
     * [3. Render novel views](#3-render-novel-views)
+  * [Troubleshooting](#troubleshooting)
   * [Citation](#citation)
 
 ## Installation TL;DR: Setup and render a demo scene
@@ -217,9 +218,13 @@ General usage (in `opengl_viewer/` directory) is
 ./opengl_viewer mpidir
 ```
 
+## Troubleshooting
 
-
-
+- __`PyramidCU::GenerateFeatureList: an illegal memory access was encountered`__:
+Some machine configurations might run into problems running the script `imgs2poses.py`.
+A solution to that would be to set the environment variable `CUDA_VISIBLE_DEVICES`.
+- __Black screen__:
+In the atest versions of MacOS, OpenGL initializes a context with a black screen until one drag or resize the window. If you run into this probblem, please drag the window to another position.
 
 
 ## Citation
