@@ -224,7 +224,7 @@ General usage (in `opengl_viewer/` directory) is
 Some machine configurations might run into problems running the script `imgs2poses.py`.
 A solution to that would be to set the environment variable `CUDA_VISIBLE_DEVICES`.
 - __Black screen__:
-In the atest versions of MacOS, OpenGL initializes a context with a black screen until one drag or resize the window. If you run into this probblem, please drag the window to another position.
+In the latest versions of MacOS, OpenGL initializes a context with a black screen until one drag or resize the window. If you run into this probblem, please drag the window to another position.
 
 
 ## Citation
