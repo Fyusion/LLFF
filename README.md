@@ -222,9 +222,9 @@ General usage (in `opengl_viewer/` directory) is
 
 - __`PyramidCU::GenerateFeatureList: an illegal memory access was encountered`__:
 Some machine configurations might run into problems running the script `imgs2poses.py`.
-A solution to that would be to set the environment variable `CUDA_VISIBLE_DEVICES`.
+A solution to that would be to set the environment variable `CUDA_VISIBLE_DEVICES`. If the issue persists, try uncommenting [this line](https://github.com/Fyusion/LLFF/blob/master/llff/poses/colmap_wrapper.py#L33) to stop COLMAP from using the GPU to extract image features.
 - __Black screen__:
-In the latest versions of MacOS, OpenGL initializes a context with a black screen until one drag or resize the window. If you run into this probblem, please drag the window to another position.
+In the latest versions of MacOS, OpenGL initializes a context with a black screen until the window is dragged or resized. If you run into this probblem, please drag the window to another position.
 
 
 ## Citation

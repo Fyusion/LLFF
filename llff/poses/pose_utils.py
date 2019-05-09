@@ -236,7 +236,14 @@ def load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
     if not load_imgs:
         return poses, bds
     
-    imgs = [imageio.imread(f, ignoregamma=True)[...,:3]/255. for f in imgfiles]
+    # imgs = [imageio.imread(f, ignoregamma=True)[...,:3]/255. for f in imgfiles]
+    def imread(f):
+        if f.endswith('png'):
+            return imageio.imread(f, ignoregamma=True)
+        else:
+            return imageio.imread(f)
+        
+    imgs = imgs = [imread(f)[...,:3]/255. for f in imgfiles]
     imgs = np.stack(imgs, -1)  
     
     print('Loaded image data', imgs.shape, poses[:,-1,0])

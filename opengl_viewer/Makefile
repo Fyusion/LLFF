@@ -7,7 +7,7 @@ ifeq ($(UNAME), Darwin)
 	FLAGS = -framework OpenGl -framework Cocoa -framework IOKit -framework CoreVideo -lglfw3 
 endif
 
-all: glad.c viewer.cpp
+opengl_viewer: glad.c viewer.cpp
 	g++ glad.c viewer.cpp -o opengl_viewer -I. -std=c++11 $(FLAGS)
 
 clean:
