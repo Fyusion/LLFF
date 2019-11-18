@@ -34,6 +34,7 @@ with Prescriptive Sampling Guidelines](https://fyusion.com/llff)
     * [1. Recover camera poses](#1-recover-camera-poses)
     * [2. Generate MPIs](#2-generate-mpis)
     * [3. Render novel views](#3-render-novel-views)
+  * [Using your own poses without running COLMAP](#using-your-own-poses-without-running-colmap)
   * [Troubleshooting](#troubleshooting)
   * [Citation](#citation)
 
@@ -218,13 +219,36 @@ General usage (in `opengl_viewer/` directory) is
 ./opengl_viewer mpidir
 ```
 
+## Using your own poses without running COLMAP
+
+Here we explain the `poses_bounds.npy` file format. This file stores a numpy array of size Nx17 (where N is the number of input images). You can see how it is loaded in the [three lines here](https://github.com/Fyusion/LLFF/blob/master/llff/poses/pose_utils.py#L195). Each row of length 17 gets reshaped into a 3x5 pose matrix and 2 depth values that bound the closest and farthest scene content from that point of view.
+
+The pose matrix is a 3x4 camera-to-world affine transform concatenated with a 3x1 column `[image height, image width, focal length]` to represent the intrinsics (we assume the principal point is centered and that the focal length is the same for both x and y).
+
+The right-handed coordinate system of the the rotation (first 3x3 block in the camera-to-world transform) is as follows: from the point of view of the camera, the three axes are 
+`[down, right, backwards]`
+which some people might consider to be `[-y,x,z]`, where the camera is looking along `-z`. (The more conventional frame `[x,y,z]` is `[right, up, backwards]`. The COLMAP frame is `[right, down, forwards]` or `[x,-y,-z]`.)
+
+If you have a set of 3x4 cam-to-world poses for your images plus focal lengths and close/far depth bounds, the steps to recreate `poses_bounds.npy` are:
+
+1. Make sure your poses are in camera-to-world format, not world-to-camera.
+2. Make sure your rotation matrices have the columns in the correct coordinate frame `[down, right, backwards]`.
+3. Concatenate each pose with the `[height, width, focal]` intrinsics vector to get a 3x5 matrix.
+4. Flatten each of those into 15 elements and concatenate the close and far depths.
+5. Stack the 17-d vectors to get a Nx17 matrix and use `np.save` to store it as `poses_bounds.npy` in the scene's base directory (same level containing the `images/` directory).
+
+This should explain the [pose processing after COLMAP](https://github.com/Fyusion/LLFF/blob/master/llff/poses/pose_utils.py#L11). 
+
+
+
 ## Troubleshooting
 
 - __`PyramidCU::GenerateFeatureList: an illegal memory access was encountered`__:
 Some machine configurations might run into problems running the script `imgs2poses.py`.
 A solution to that would be to set the environment variable `CUDA_VISIBLE_DEVICES`. If the issue persists, try uncommenting [this line](https://github.com/Fyusion/LLFF/blob/master/llff/poses/colmap_wrapper.py#L33) to stop COLMAP from using the GPU to extract image features.
 - __Black screen__:
-In the latest versions of MacOS, OpenGL initializes a context with a black screen until the window is dragged or resized. If you run into this probblem, please drag the window to another position.
+In the latest versions of MacOS, OpenGL initializes a context with a black screen until the window is dragged or resized. If you run into this problem, please drag the window to another position.
+- __COLMAP fails__: If you see "Could not register, trying another image", you will probably have to try changing COLMAP optimization parameters or capturing more images of your scene. See [here](https://github.com/Fyusion/LLFF/issues/8#issuecomment-498514411).
 
 
 ## Citation
