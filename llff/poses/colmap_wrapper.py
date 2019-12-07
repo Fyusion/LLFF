@@ -20,7 +20,7 @@ import subprocess
 #     --output_path $DATASET_PATH/sparse
 
 # $ mkdir $DATASET_PATH/dense
-def run_colmap(basedir):
+def run_colmap(basedir, match_type):
     
     logfile_name = os.path.join(basedir, 'colmap_output.txt')
     logfile = open(logfile_name, 'w')
@@ -35,11 +35,12 @@ def run_colmap(basedir):
     feat_output = ( subprocess.check_output(feature_extractor_args, universal_newlines=True) )
     logfile.write(feat_output)
     print('Features extracted')
-    
+
     exhaustive_matcher_args = [
-        'colmap', 'exhaustive_matcher', 
+        'colmap', match_type, 
             '--database_path', os.path.join(basedir, 'database.db'), 
     ]
+
     match_output = ( subprocess.check_output(exhaustive_matcher_args, universal_newlines=True) )
     logfile.write(match_output)
     print('Features matched')

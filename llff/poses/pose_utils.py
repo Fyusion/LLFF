@@ -60,6 +60,9 @@ def save_poses(basedir, poses, pts3d, perm):
         pts_arr.append(pts3d[k].xyz)
         cams = [0] * poses.shape[-1]
         for ind in pts3d[k].image_ids:
+            if len(cams) < ind - 1:
+                print('ERROR: the correct camera poses for current points cannot be accessed')
+                return
             cams[ind-1] = 1
         vis_arr.append(cams)
 
@@ -253,7 +256,7 @@ def load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
             
             
     
-def gen_poses(basedir, factors=None):
+def gen_poses(basedir, match_type, factors=None):
     
     files_needed = ['{}.bin'.format(f) for f in ['cameras', 'images', 'points3D']]
     if os.path.exists(os.path.join(basedir, 'sparse/0')):
@@ -262,7 +265,7 @@ def gen_poses(basedir, factors=None):
         files_had = []
     if not all([f in files_had for f in files_needed]):
         print( 'Need to run COLMAP' )
-        run_colmap(basedir)
+        run_colmap(basedir, match_type)
     else:
         print('Don\'t need to run COLMAP')
         
