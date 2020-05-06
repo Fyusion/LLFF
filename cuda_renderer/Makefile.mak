@@ -3,5 +3,5 @@ cuda_renderer: main.cu mpi_cuda.cu
 	main.cu mpi_cuda.cu -o cuda_renderer 
 
 clean: 
-	rm cuda_renderer
+	del cuda_renderer.*
     
