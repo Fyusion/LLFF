@@ -143,9 +143,9 @@ def run_inference(imgs, poses, mpi_bds, ibr_runner, num_planes, patched=False, d
         dists = np.sum(np.square(poses[:3, 3, i:i+1] - poses[:3, 3, :]), 0)
         neighs = np.argsort(dists)
         
-        neighs = neighs[1:]
-        if len(neighs) < 5:
-            neighs += [i] * (5 - len(neighs))
+        neighs = list(neighs[1:])
+        if len(neighs) < 4:
+            neighs += [i] * (4 - len(neighs))
             print( 'Had to extend to', neighs )
         
         # We always use 5 inputs now
