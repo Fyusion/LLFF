@@ -3,11 +3,11 @@
 <br><br><br><br>
 
 # Local Light Field Fusion
-### [Project](https://fyusion.com/llff) | [Video](https://youtu.be/LY6MgDUzS3M) | [Paper](https://arxiv.org/abs/1905.00889) 
+### [Project](https://bmild.github.io/llff) | [Video](https://youtu.be/LY6MgDUzS3M) | [Paper](https://arxiv.org/abs/1905.00889) 
 
 Tensorflow implementation for novel view synthesis from sparse input images.<br><br>
 [Local Light Field Fusion: Practical View Synthesis 
-with Prescriptive Sampling Guidelines](https://fyusion.com/llff)  
+with Prescriptive Sampling Guidelines](https://bmild.github.io/llff)  
  [Ben Mildenhall](https://people.eecs.berkeley.edu/~bmild/)\*<sup>1</sup>, 
  [Pratul Srinivasan](https://people.eecs.berkeley.edu/~pratul/)\*<sup>1</sup>, 
  [Rodrigo Ortiz-Cayon](https://scholar.google.com/citations?user=yZMAlU4AAAAJ)<sup>2</sup>, 
