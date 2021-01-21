@@ -1,9 +1,9 @@
 cd checkpoints
-wget http://people.eecs.berkeley.edu/~bmild/llff/data/llff_trained_model.zip
+wget http://cseweb.ucsd.edu/~viscomp/projects/LF/papers/SIG19/lffusion/llff_trained_model.zip
 unzip llff_trained_model.zip
 cd ..
 
 cd data
-wget http://people.eecs.berkeley.edu/~bmild/llff/data/testscene.zip
+wget http://cseweb.ucsd.edu/~viscomp/projects/LF/papers/SIG19/lffusion/testscene.zip
 unzip testscene.zip
 cd ..
