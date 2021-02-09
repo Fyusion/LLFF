@@ -56,7 +56,11 @@ void gpu2ffmpeg(const char* filename, uint8_t* d_out_arr_vid,
     cout << "ffmpeg, calling:" << endl;
     cout << sstm.str() << endl;
     // open a pipe to FFmpeg
-    if ( !(pPipe = popen(sstm.str().c_str(), "w")) ) {
+	#ifdef _WIN32
+	   if ( !(pPipe = _popen(sstm.str().c_str(), "w")) ) {
+	#else
+		if ( !(pPipe = popen(sstm.str().c_str(), "w")) ) {
+	#endif
         cout << "popen error" << endl;
         exit(1);
     }
