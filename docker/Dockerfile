@@ -29,8 +29,8 @@ RUN apt-get update && apt-get install -y \
 RUN cd /opt
 WORKDIR /opt
 RUN apt-get install -y libatlas-base-dev libsuitesparse-dev libgoogle-glog-dev libeigen3-dev libsuitesparse-dev
-RUN git clone https://ceres-solver.googlesource.com/ceres-solver
-RUN cd ceres-solver
+RUN git clone https://ceres-solver.googlesource.com/ceres-solver \
+ && cd ceres-solver && git checkout 1.14.0
 WORKDIR /opt/ceres-solver
 RUN mkdir build
 RUN cd build
@@ -90,7 +90,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+RUN curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
 
