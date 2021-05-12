@@ -29,8 +29,8 @@ RUN apt-get update && apt-get install -y \
 RUN cd /opt
 WORKDIR /opt
 RUN apt-get install -y libatlas-base-dev libsuitesparse-dev libgoogle-glog-dev libeigen3-dev libsuitesparse-dev
-RUN git clone https://ceres-solver.googlesource.com/ceres-solver
-RUN cd ceres-solver
+RUN git clone https://ceres-solver.googlesource.com/ceres-solver \
+ && cd ceres-solver && git checkout 1.14.0
 WORKDIR /opt/ceres-solver
 RUN mkdir build
 RUN cd build
