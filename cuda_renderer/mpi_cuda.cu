@@ -1,3 +1,4 @@
+#include <cstdint>
 #include "mpi_cuda.h"
 
 

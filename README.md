@@ -171,6 +171,18 @@ See `llff/math/pose_math.py` for the code that generates these path trajectories
 #### Render video with CUDA
 You can build this in the `cuda_renderer/` directory by calling `make`.
 
+In order to use make, you must install the following dependencies:
+
+```
+sudo apt install nvidia-cuda-toolkit
+sudo apt-get install build-essential
+sudo apt-get install g++
+sudo apt-get install make
+sudo apt-get install libeigen3-dev
+sudo apt-get install libglew-dev
+sudo apt install openmpi-bin libopenmpi-dev
+```
+
 Uses CUDA to render out a video. Specify the height of the output video in pixels (-1 for same resolution as the MPIs), the factor for cropping the edges of the video (default is 1.0 for no cropping), and the compression quality (crf) for the saved MP4 file (default is 18, lossless is 0, reasonable is 12-28).
 ```
 ./cuda_renderer mpidir <your_posefile> <your_videofile> height crop crf
